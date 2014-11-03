@@ -156,8 +156,7 @@ module tsd {
 			Q.all(bundles.map((target:string) => {
 				return this.core.bundle.addToBundle(target, refs, true).progress(d.notify);
 			})).then(() => {
-				// TODO re-use config var?
-				if (options.saveToConfig && this.context.config.bundle) {
+				if ((options.saveToConfig || options.saveBundle) && this.context.config.bundle) {
 					// no progress?
 					return this.core.bundle.addToBundle(this.context.config.bundle, refs, true);
 				}
